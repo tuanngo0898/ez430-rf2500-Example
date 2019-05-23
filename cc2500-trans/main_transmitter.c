@@ -76,7 +76,7 @@ void setup() {
 void main(void) {
     setup();
 
-    __bis_SR_register(GIE);       // Enter LPM4 w/interrupt
+    __bis_SR_register(GIE);    
 
     while(1){
         RFSendPacket(txBuffer, 3);              // Send value over RF

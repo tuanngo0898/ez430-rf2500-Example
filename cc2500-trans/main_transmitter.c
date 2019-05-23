@@ -68,9 +68,9 @@ void setup() {
     P1DIR = BIT1; // P1.1 output
     P1OUT &= ~BIT1; // P1.1 output LOW, LED Off
 
-    P2IE |= BIT0;                             // P2.0 interrupt enabled
-    P2IES |= BIT0;                            // P2.0 Hi/lo edge
-    P2IFG &= ~BIT0;                           // P2.0 IFG cleared
+    TI_CC_GDO0_PxIE |= TI_CC_GDO0_PIN;                             // P2.0 interrupt enabled
+    TI_CC_GDO0_PxIES |= TI_CC_GDO0_PIN;                            // P2.0 Hi/lo edge
+    TI_CC_GDO0_PxIFG &= ~TI_CC_GDO0_PIN;                           // P2.0 IFG cleared
 }
 
 void main(void) {
@@ -96,5 +96,5 @@ __interrupt void Port2_ISR(void)
 	P1OUT ^= BIT1;
 	TI_CC_Wait(50000);
 
-	P2IFG &= ~TI_CC_GDO0_PIN;                           // P2.0 IFG cleared
+	TI_CC_GDO0_PxIFG &= ~TI_CC_GDO0_PIN;                           // P2.0 IFG cleared
 }
